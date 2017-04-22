@@ -15,6 +15,8 @@
 
 package com.karumi.todoapiclient.exception;
 
+import com.karumi.todoapiclient.todo.TodoApiClientException;
+
 public class UnknownErrorException extends TodoApiClientException {
 
   private final int code;

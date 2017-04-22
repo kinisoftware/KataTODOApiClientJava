@@ -1,4 +1,4 @@
-/*
+package com.karumi.todoapiclient.todo;/*
  *   Copyright (C) 2016 Karumi.
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
  *   limitations under the License.
  */
 
-import com.karumi.todoapiclient.TodoApiClient;
-import com.karumi.todoapiclient.dto.TaskDto;
-import com.karumi.todoapiclient.exception.TodoApiClientException;
+import com.karumi.todoapiclient.todo.TodoApiClient;
+import com.karumi.todoapiclient.todo.dto.TaskDto;
+import com.karumi.todoapiclient.todo.TodoApiClientException;
 import java.util.List;
 
 public class TodoApiClientPlayground {

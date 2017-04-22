@@ -13,8 +13,10 @@
  *   limitations under the License.
  */
 
-package com.karumi.todoapiclient.exception;
+package com.karumi.todoapiclient.todo;
 
-public class TodoApiClientException extends Exception {
+interface TodoApiClientConfig {
 
+  String BASE_ENDPOINT = "http://jsonplaceholder.typicode.com";
+  String TASKS_ENDPOINT = "/todos";
 }

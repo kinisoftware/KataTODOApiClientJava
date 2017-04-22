@@ -13,9 +13,9 @@
  *   limitations under the License.
  */
 
-package com.karumi.todoapiclient;
+package com.karumi.todoapiclient.todo;
 
-import com.karumi.todoapiclient.dto.TaskDto;
+import com.karumi.todoapiclient.todo.dto.TaskDto;
 import java.util.List;
 import retrofit.Call;
 import retrofit.http.Body;
@@ -25,18 +25,16 @@ import retrofit.http.POST;
 import retrofit.http.PUT;
 import retrofit.http.Path;
 
-import static com.karumi.todoapiclient.TodoApiClientConfig.TASKS_ENDPOINT;
-
 interface TodoService {
 
-  @GET(TASKS_ENDPOINT) Call<List<TaskDto>> getAll();
+  @GET(TodoApiClientConfig.TASKS_ENDPOINT) Call<List<TaskDto>> getAll();
 
-  @GET(TASKS_ENDPOINT + "/{taskId}") Call<TaskDto> getById(@Path("taskId") String taskId);
+  @GET(TodoApiClientConfig.TASKS_ENDPOINT + "/{taskId}") Call<TaskDto> getById(@Path("taskId") String taskId);
 
-  @POST(TASKS_ENDPOINT) Call<TaskDto> add(@Body TaskDto task);
+  @POST(TodoApiClientConfig.TASKS_ENDPOINT) Call<TaskDto> add(@Body TaskDto task);
 
-  @PUT(TASKS_ENDPOINT + "/{taskId}") Call<TaskDto> updateById(@Path("taskId") String taskId,
-      @Body TaskDto task);
+  @PUT(TodoApiClientConfig.TASKS_ENDPOINT + "/{taskId}") Call<TaskDto> updateById(@Path("taskId") String taskId,
+                                                                                  @Body TaskDto task);
 
-  @DELETE(TASKS_ENDPOINT + "/{taskId}") Call<Void> deleteById(@Path("taskId") String taskId);
+  @DELETE(TodoApiClientConfig.TASKS_ENDPOINT + "/{taskId}") Call<Void> deleteById(@Path("taskId") String taskId);
 }

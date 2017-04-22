@@ -13,12 +13,11 @@
  *   limitations under the License.
  */
 
-package com.karumi.todoapiclient;
+package com.karumi.todoapiclient.todo;
 
-import com.karumi.todoapiclient.dto.TaskDto;
+import com.karumi.todoapiclient.todo.dto.TaskDto;
 import com.karumi.todoapiclient.exception.ItemNotFoundException;
 import com.karumi.todoapiclient.exception.NetworkErrorException;
-import com.karumi.todoapiclient.exception.TodoApiClientException;
 import com.karumi.todoapiclient.exception.UnknownErrorException;
 import com.karumi.todoapiclient.interceptor.DefaultHeadersInterceptor;
 import java.io.IOException;
@@ -27,14 +26,12 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-import static com.karumi.todoapiclient.TodoApiClientConfig.BASE_ENDPOINT;
-
 public class TodoApiClient {
 
   private final TodoService todoService;
 
   public TodoApiClient() {
-    this(BASE_ENDPOINT);
+    this(TodoApiClientConfig.BASE_ENDPOINT);
   }
 
   public TodoApiClient(String baseEndpoint) {
