@@ -18,16 +18,19 @@ package com.karumi.todoapiclient.interceptor;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+
 import java.io.IOException;
 
 public class DefaultHeadersInterceptor implements Interceptor {
 
-  @Override public Response intercept(Chain chain) throws IOException {
-    Request request = chain.request();
-    request = request.newBuilder()
-        .addHeader("Accept", "application/json")
-        .addHeader("Content-Type", "application/json")
-        .build();
-    return chain.proceed(request);
-  }
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        Request request = chain.request();
+        request = request.newBuilder()
+                .addHeader("Accept", "application/json")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept-Language", "es-es")
+                .build();
+        return chain.proceed(request);
+    }
 }

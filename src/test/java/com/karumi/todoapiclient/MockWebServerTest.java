@@ -110,7 +110,7 @@ public class MockWebServerTest {
   }
 
   protected String getBaseEndpoint() {
-    return server.getUrl("/").toString();
+    return server.url("/").toString();
   }
 
   protected void assertRequestBodyEquals(String jsonFile) throws InterruptedException, IOException {

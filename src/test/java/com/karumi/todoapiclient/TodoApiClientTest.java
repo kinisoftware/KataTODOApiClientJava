@@ -58,6 +58,14 @@ public class TodoApiClientTest extends MockWebServerTest {
     assertTaskContainsExpectedValues(tasks.get(0));
   }
 
+  @Test public void sendsHeaderWithAcceptLanguage() throws Exception {
+    enqueueMockResponse();
+
+    apiClient.getAllTasks();
+
+    assertRequestContainsHeader("Accept-Language", "es-es");
+  }
+
   private void assertTaskContainsExpectedValues(TaskDto task) {
     assertEquals(task.getId(), "1");
     assertEquals(task.getUserId(), "1");
