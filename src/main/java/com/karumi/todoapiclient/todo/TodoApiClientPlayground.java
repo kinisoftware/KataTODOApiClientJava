@@ -13,44 +13,44 @@ package com.karumi.todoapiclient.todo;/*
  *   limitations under the License.
  */
 
-import com.karumi.todoapiclient.todo.TodoApiClient;
+import com.karumi.todoapiclient.exception.ApiClientException;
 import com.karumi.todoapiclient.todo.dto.TaskDto;
-import com.karumi.todoapiclient.todo.TodoApiClientException;
+
 import java.util.List;
 
 public class TodoApiClientPlayground {
 
-  public static void main(String[] args) {
-    TodoApiClient todoApiClient = new TodoApiClient();
-    try {
+    public static void main(String[] args) {
+        TodoApiClient todoApiClient = new TodoApiClient();
+        try {
 
-      // Get all tasks.
-      List<TaskDto> tasks = todoApiClient.getAllTasks();
-      print(tasks);
+            // Get all tasks.
+            List<TaskDto> tasks = todoApiClient.getAllTasks();
+            print(tasks);
 
-      // Get task by id.
-      TaskDto task = todoApiClient.getTaskById("1");
-      print(task);
+            // Get task by id.
+            TaskDto task = todoApiClient.getTaskById("1");
+            print(task);
 
-      //Delete task by id.
-      todoApiClient.deleteTaskById("1");
+            //Delete task by id.
+            todoApiClient.deleteTaskById("1");
 
-      //Update task by id.
-      TaskDto taskToUpdate = new TaskDto("1", "1", "Finish this kata", false);
-      TaskDto updatedTask = todoApiClient.updateTaskById(taskToUpdate);
-      print(updatedTask);
+            //Update task by id.
+            TaskDto taskToUpdate = new TaskDto("1", "1", "Finish this kata", false);
+            TaskDto updatedTask = todoApiClient.updateTaskById(taskToUpdate);
+            print(updatedTask);
 
-      //Add task.
-      TaskDto taskToAdd = new TaskDto("1", "1", "Finish this kata", false);
-      TaskDto addedTask = todoApiClient.addTask(taskToAdd);
-      print(addedTask);
+            //Add task.
+            TaskDto taskToAdd = new TaskDto("1", "1", "Finish this kata", false);
+            TaskDto addedTask = todoApiClient.addTask(taskToAdd);
+            print(addedTask);
 
-    } catch (TodoApiClientException e) {
-      e.printStackTrace();
+        } catch (ApiClientException e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  private static void print(Object object) {
-      System.out.println(object);
-  }
+    private static void print(Object object) {
+        System.out.println(object);
+    }
 }

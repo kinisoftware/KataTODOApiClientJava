@@ -1,11 +1,11 @@
 package com.karumi.todoapiclient.routes;
 
-import com.karumi.todoapiclient.routes.dto.PostDto;
+import com.karumi.todoapiclient.exception.ApiClientException;
 import com.karumi.todoapiclient.exception.ItemNotFoundException;
 import com.karumi.todoapiclient.exception.NetworkErrorException;
-import com.karumi.todoapiclient.todo.TodoApiClientException;
 import com.karumi.todoapiclient.exception.UnknownErrorException;
 import com.karumi.todoapiclient.interceptor.DefaultHeadersInterceptor;
+import com.karumi.todoapiclient.routes.dto.PostDto;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,7 +30,7 @@ public class RoutesApiClient {
         this.routesService = retrofit.create(RoutesService.class);
     }
 
-    public List<PostDto> getAllPosts() throws TodoApiClientException {
+    public List<PostDto> getAllPosts() throws ApiClientException {
         try {
             Response<List<PostDto>> response = routesService.getAll().execute();
             inspectResponseForErrors(response);
@@ -40,7 +40,7 @@ public class RoutesApiClient {
         }
     }
 
-    public PostDto getPostById(String postId) throws TodoApiClientException {
+    public PostDto getPostById(String postId) throws ApiClientException {
         try {
             Response<PostDto> response = routesService.getById(postId).execute();
             inspectResponseForErrors(response);
@@ -50,7 +50,7 @@ public class RoutesApiClient {
         }
     }
 
-    public PostDto addTask(PostDto post) throws TodoApiClientException {
+    public PostDto addTask(PostDto post) throws ApiClientException {
         try {
             Response<PostDto> response = routesService.add(post).execute();
             inspectResponseForErrors(response);
@@ -60,7 +60,7 @@ public class RoutesApiClient {
         }
     }
 
-    public PostDto updateTaskById(PostDto post) throws TodoApiClientException {
+    public PostDto updateTaskById(PostDto post) throws ApiClientException {
         try {
             Response<PostDto> response = routesService.updateById(post.getId(), post).execute();
             inspectResponseForErrors(response);
@@ -70,7 +70,7 @@ public class RoutesApiClient {
         }
     }
 
-    public void deleteTaskById(String postId) throws TodoApiClientException {
+    public void deleteTaskById(String postId) throws ApiClientException {
         try {
             Response<Void> response = routesService.deleteById(postId).execute();
             inspectResponseForErrors(response);
@@ -79,7 +79,7 @@ public class RoutesApiClient {
         }
     }
 
-    private void inspectResponseForErrors(Response response) throws TodoApiClientException {
+    private void inspectResponseForErrors(Response response) throws ApiClientException {
         int code = response.code();
         if (code == 404) {
             throw new ItemNotFoundException();

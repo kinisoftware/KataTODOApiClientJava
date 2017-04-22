@@ -15,7 +15,5 @@
 
 package com.karumi.todoapiclient.exception;
 
-import com.karumi.todoapiclient.todo.TodoApiClientException;
-
-public class NetworkErrorException extends TodoApiClientException {
+public class NetworkErrorException extends ApiClientException {
 }
