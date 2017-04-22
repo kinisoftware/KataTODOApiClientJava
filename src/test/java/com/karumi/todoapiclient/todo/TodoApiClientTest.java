@@ -17,9 +17,9 @@ package com.karumi.todoapiclient.todo;
 
 import com.google.gson.JsonSyntaxException;
 import com.karumi.todoapiclient.MockWebServerTest;
-import com.karumi.todoapiclient.todo.dto.TaskDto;
 import com.karumi.todoapiclient.exception.ItemNotFoundException;
 import com.karumi.todoapiclient.exception.UnknownErrorException;
+import com.karumi.todoapiclient.todo.dto.TaskDto;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -184,6 +184,28 @@ public class TodoApiClientTest extends MockWebServerTest {
                 .withId("1")
                 .build();
         assertEquals(expectedCreatedTask, createdTask);
+    }
+
+    @Test
+    public void requestIsRightDeletingATaskById() throws Exception {
+        enqueueMockResponse();
+
+        String taskId = "any_task";
+        apiClient.deleteTaskById(taskId);
+
+        assertDeleteRequestSentTo("/todos/" + taskId);
+    }
+
+    @Test
+    public void requestIsRightUpdatingATask() throws Exception {
+        enqueueMockResponse();
+
+        TaskDto taskDto = new TaskDtoBuilder()
+                .withId("1")
+                .build();
+        apiClient.updateTaskById(taskDto);
+
+        assertPutRequestSentTo("/todos/" + taskDto.getId());
     }
 
     private void assertTaskContainsExpectedValues(TaskDto task) {
